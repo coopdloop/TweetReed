@@ -1,47 +1,39 @@
+import tweepy
 import json
-import requests
-import base64
-
-# For dev
+from datetime import datetime
 configfile = 'C:\\Users\\thecasual\\Desktop\\TweetReed\\config\\config.json'
 
 with open(configfile) as c:
     config = json.load(c)
 
-consumerkey=config['consumerkey']
-consumersecret=config['consumersecret']
-accesstokenkey=config['accesstokenkey']
-accesstokensecret=config['accesstokensecret']
+consumer_key=config['consumerkey']
+consumer_secret=config['consumersecret']
+access_token=config['accesstokenkey']
+access_token_secret=config['accesstokensecret']
 
-# Used for testing with burp
-proxies = {
-    "https" : "https://localhost:8080"
-}
+def auth():
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    return tweepy.API(auth)
 
-def getaccesstoken():
-    oauthurl = 'https://api.twitter.com/oauth2/token'
-    bearertoken = base64.b64encode((consumerkey + ":" + consumersecret).encode('utf-8')).decode("utf-8")
-    headers = {
-        'Content-Type' : 'application/x-www-form-urlencoded;charset=UTF-8',
-        'Authorization' : "Basic " + bearertoken
-    }
-    body = 'grant_type=client_credentials'
-    r = requests.post(headers=headers, data=body, url = oauthurl, verify=False)
-    if r.status_code == 200:
-        return json.loads(r.text)['access_token']
-    else:
-        return "Request failed!"
-
-def twitterrequest(accesstoken):
-    # TODO
-    twitterstatus = 'https://api.twitter.com/1.1/statuses/user_timeline.json?count=100&screen_name=twitterapi'
-    headers = {
-        "Authorization" : "Bearer " + accesstoken
-    }
-    r = requests.get(url=twitterstatus, headers=headers)
-    print(r.text)
+def get_tweets(handle, c):
+    api = auth()
+    t = api.user_timeline(screen_name = handle, count = c, include_rts = False)
+    #tweets = []
+    tweets = {}
+    index = 0
+    for tweet in t:
+        #tweets.append(tweet.text.encode('utf-8'))
+        data = {
+            "handle" : handle,
+            "created_at" : tweet.created_at.timestamp(),
+            "text" : tweet.text,
+            "author" : tweet.author.name
+        }
+        tweets[index] = data
+        index += 1
+    return tweets
 
 
-accesstoken = getaccesstoken()
-print(accesstoken)
-twitterrequest(accesstoken)
+if __name__ == "__main__":
+    out = get_tweets('realDonaldTrump', 3)
