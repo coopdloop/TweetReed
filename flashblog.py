@@ -27,6 +27,12 @@ def home():
 def about():
     return render_template('about.html', title = 'About')
 
+
+@app.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('img', path)
+
+
 @app.route('/update')
 def updatecode():
     os.system('git pull origin master')
