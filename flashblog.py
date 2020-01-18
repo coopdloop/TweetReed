@@ -40,7 +40,7 @@ def updatecode():
 
 @app.route('/handle')
 def displaytweet():
-	handle = request.form.get(handle)
+	handle = request.form.get('handle')
 	return handle
 	
 
