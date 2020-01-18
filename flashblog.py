@@ -30,7 +30,7 @@ def about():
 @app.route('/update')
 def updatecode():
     os.system('git pull origin master')
-    return render_template('about.html')    
+    return render_template('home.html')    
 
 
 
