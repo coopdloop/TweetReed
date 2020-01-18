@@ -41,7 +41,7 @@ def updatecode():
 @app.route('/handle')
 def displaytweet():
 	handle = request.form.get('handle')
-	return render_template(handle)
+	return render_template('handle.html', handle = handle)
 	
 
 
