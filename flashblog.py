@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, send_from_directory
+from flask import Flask, render_template, url_for, send_from_directory, request
 import os
 app = Flask(__name__)
 
@@ -36,8 +36,13 @@ def send_img(path):
 @app.route('/update')
 def updatecode():
     os.system('git pull origin master')
-    return render_template('home.html', posts=posts)    
+    return render_template('home.html', posts=posts) 
 
+@app.route('/handle')
+def displaytweet():
+	handle = request.form.get(handle)
+	return handle
+	
 
 
 if __name__ == '__main__':
