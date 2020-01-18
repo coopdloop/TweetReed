@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, send_from_directory, request
+from flask import Flask, render_template, request, send_from_directory, json, make_response
 import os
 app = Flask(__name__)
 
@@ -38,9 +38,10 @@ def updatecode():
     os.system('git pull origin master')
     return render_template('home.html', posts=posts) 
 
-@app.route('/handle')
+@app.route('/handle', methods = ['GET','POST'])
 def displaytweet():
-	handle = request.form.get('handle')
+	handle = request.args.get('handle')
+	print(handle)
 	return render_template('handle.html', handle = handle)
 	
 
