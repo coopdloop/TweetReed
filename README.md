@@ -11,6 +11,7 @@ Format:
 
 Output from get_tweets('realDonaldTrump', 3) - 1.18.2020 - todo fix text formatting
 
+```
 {
   "0": {
     "handle": "realDonaldTrump",
@@ -31,3 +32,4 @@ Output from get_tweets('realDonaldTrump', 3) - 1.18.2020 - todo fix text formatt
     "author": "Donald J. Trump"
   }
 }
+```
