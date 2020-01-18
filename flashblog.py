@@ -5,13 +5,11 @@ app = Flask(__name__)
 posts=[
 	{
 		'author': 'Cooper Wallace',
-		'title': 'Tweet 1',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 	},
 	{
 		'author': 'Sam Wallace',
-		'title': 'Tweet 2',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 
@@ -32,7 +30,7 @@ def about():
 @app.route('/update')
 def updatecode():
     os.system('git pull origin master')
-    return render_template('about.html', title = 'About')    
+    return render_template('home.html')    
 
 
 
