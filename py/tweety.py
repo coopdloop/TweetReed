@@ -23,10 +23,10 @@ consumer_secret=config['consumersecret']
 access_token=config['accesstokenkey']
 access_token_secret=config['accesstokensecret']
 
-def auth():
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    return tweepy.API(auth)
+#def auth():
+#    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+#    auth.set_access_token(access_token, access_token_secret)
+#    return tweepy.API(auth)
 
 def get_tweets(handle, c):
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
