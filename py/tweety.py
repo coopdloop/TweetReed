@@ -1,7 +1,7 @@
 import tweepy
 import json
 from datetime import datetime
-configfile = 'C:\\Users\\thecasual\\Desktop\\TweetReed\\config\\config.json'
+configfile = 'C:\\Users\\Cooper\\Desktop\\TweetReed\\config\\config.json'
 
 with open(configfile) as c:
     config = json.load(c)

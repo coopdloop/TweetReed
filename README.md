@@ -1,3 +1,5 @@
+Created by Cooper and Sam
+
 Instructions
 -----
 1) Install Python3

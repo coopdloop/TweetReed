@@ -1,19 +1,32 @@
 from flask import Flask, render_template, request, send_from_directory, json, make_response
 import os
+import sys
+#test = sys.path.insert(0, '/py/')
+from py import tweety
 app = Flask(__name__)
+
+raw = tweety.get_tweets('realDonaldTrump',2)
+
+
 
 posts=[
 	{
-		'author': 'Cooper Wallace',
+		'author': 'hi',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 	},
 	{
-		'author': 'Sam Wallace',
+		'author': raw,
+		'content': 'content',
+		'date_posted': 'January 1, 2020'
+	},
+	{
+		'author': 'content',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 
 	}
+
 
 ]
 
@@ -44,7 +57,10 @@ def displaytweet():
 	print(handle)
 	return render_template('handle.html', handle = handle)
 	
+@app.route('/json' )
+def jsonconv():
 
+	return render_template('home.html', posts=posts)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0' ,port=1337)
