@@ -5,9 +5,7 @@ import sys
 from py import tweety
 app = Flask(__name__)
 
-raw = tweety.get_tweets('realDonaldTrump',2)
-
-
+#raw = tweety.get_tweets('realDonaldTrump',2)
 
 posts=[
 	{
@@ -16,7 +14,7 @@ posts=[
 		'date_posted': 'January 1, 2020'
 	},
 	{
-		'author': raw,
+		'author': 'test',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 	},
@@ -24,12 +22,8 @@ posts=[
 		'author': 'content',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
-
 	}
-
-
 ]
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -51,16 +45,12 @@ def updatecode():
     os.system('git pull origin master')
     return render_template('home.html', posts=posts) 
 
-@app.route('/handle', methods = ['GET','POST'])
+@app.route('/handle', methods = ['GET'])
 def displaytweet():
-	handle = request.args.get('handle')
-	print(handle)
-	return render_template('handle.html', handle = handle)
-	
-@app.route('/json' )
-def jsonconv():
-
-	return render_template('home.html', posts=posts)
+	h = request.args.get('h')
+	c = request.args.get('c')
+	out = tweety.get_tweets(h, c)
+	return(out), {'Content-Type': 'application/json'}
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0' ,port=1337)
