@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 posts=[
 	{
-		'author': 'hi',
+		'author': 'testtststst',
 		'content': 'content',
 		'date_posted': 'January 1, 2020'
 	},
