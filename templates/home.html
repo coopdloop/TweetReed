@@ -1,19 +1,47 @@
 {% extends "layout.html" %}
+
 {% block content %}
 	{% for post in posts %}
 
-		<article class="media content-section">
-		  <div class="media-body">
-		    <div class="article-metadata">
-		      <a class="mr-2" href="#">{{ post.author }}</a>
-		      <small class="text-muted">{{ post.date_posted }}</small>
+<header class="site-header">
+	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+	    <div class="container">
+	      <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+	        <div class="navbar-nav mr-auto">
+	          <a class="nav-item nav-link" href="/">Home</a>
+	          <a class="nav-item nav-link" href="/about">About</a>
+	          <button class="button" onclick="testy('realDonaldTrump',10)">Info</button>
+	          
+	        </div>
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav">
+	          <a class="nav-item nav-link" href="/login">Login</a>
+	          <a class="nav-item nav-link" href="/register">Register</a>
+	          <a class="nav-item nav-link" href="/update">update</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+	</header>
+	  
+	
+		<article class="media content-section" hidden>
+		  <div class="media-body" >
+		    <div class="article-metadata" >
+		      <a class="postAuthor" href="#" >{{ post.author }}</a>
+		      <a class="postHandle" href="#" >{{ post.handle }}</a>
+		      <small class="postDate" >{{ post.date_posted }}</small>
 		    </div>
-		    <p class="article-content">{{ post.content }}</p>
+		    <p class="postContent" >{{ post.content }}</p>
 		  </div>
 		</article>
 
 	{% endfor %}
 	
-	<button class="button">Info</button>
+	
 
 {% endblock content %}

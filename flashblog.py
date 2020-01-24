@@ -9,20 +9,12 @@ app = Flask(__name__)
 
 posts=[
 	{
-		'author': 'testtststst',
-		'content': 'content',
-		'date_posted': 'January 1, 2020'
-	},
-	{
-		'author': 'test',
-		'content': 'content',
-		'date_posted': 'January 1, 2020'
-	},
-	{
-		'author': 'content',
-		'content': 'content',
+		'author': 'lol',
+		'handle': '@coop',
+		'content': 'He had accidentally hacked into his companys server',
 		'date_posted': 'January 1, 2020'
 	}
+
 ]
 @app.route('/')
 @app.route('/home')
@@ -38,6 +30,10 @@ def about():
 @app.route('/img/<path:path>')
 def send_img(path):
     return send_from_directory('img', path)
+
+@app.route('/js/<path:path>')
+def send_js(path):
+	return send_from_directory('js', path)
 
 
 @app.route('/update')
